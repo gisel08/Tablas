@@ -1,54 +1,65 @@
 @extends('adminlte::page')
 
-@section('title', 'ROLES')
+@section('title', 'ESTUDIANTE')
 
 @section('content_header')
-    <h1>ROLES</h1>
+    <h1>ESTUDIANTE</h1>
 @stop
 
 @section('content')
-    @can('crear-rol')
-    <a class="btn btn-primary" href="{{route('roles.create') }}">Crear Nuevo</a>
-    @endcan
+@can('crear-estudiante')
+<a class="btn btn-primary" href="{{route('estudiantes.create') }}">Crear Nuevo</a>
+@endcan
 
-    <div class="table-responsive mt-4">
-        <table id="rolt" class="table">
-            <thead class="table-dark">
-                <tr>
-                    <th class="text-light" scope="col">ROL</th>
-                    <th class="text-light" scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($roles as $role)
-                <tr>
-                    <td>{{$role->name}}</td>
-                    <td>
-                        @can('editar-rol')
-                            <a class="btn btn-warning" href="{{route('roles.edit', $role->id)}}">Editar</a>
-                        @endcan
-
-                        @can('borrar-rol')
-                        <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Borrar</button>
-                        </form>                        
-                        @endcan
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-
+<div class="table-responsive mt-4">
+    <table id="estudiantet" class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+                <th>Matricula</th>
+                <th>Correo</th>
+                <th>Carrera</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($estudiante as $estudiante)
+            <tr>
+                <td>{{$estudiante->id}}</td>
+                <td>{{$estudiante->nombre}}</td>
+                <td>{{$estudiante->apellidopaterno}}</td>
+                <td>{{$estudiante->apellidomaterno}}</td>
+                <td>{{$estudiante->matricula}}</td>
+                <td>{{$estudiante->correo}}</td>
+                <td>{{$estudiante->carrera->nombre ?? 'No asignado o Eliminado'}}</td>
+                <td>{{$estudiante->user->name ?? 'No asignado o Eliminado'}}</td>
+                <td>
+                    @can('editar-estudiante')
+                        <a  class="btn btn-warning "  href="{{route('estudiantes.edit', $estudiante->id)}}">Editar</a>
+                    @endcan
+                    @can('eliminar-estudiante')
+                    <form method="POST" action="{{ route('estudiantes.destroy', $estudiante->id) }}" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>                    
+                    @endcan
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-    
+
     <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
     <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
@@ -58,8 +69,9 @@
 @stop
 
 @section('js')
+    <script> console.log('Hi!'); </script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script> {{-- Es para lo de datatable --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script> {{-- Es para lo de datatable --}}
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> {{-- Es para lo de datatable --}}
 <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> {{-- Es para lo de datatable --}}
 
@@ -72,7 +84,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#rolt').DataTable( {
+            $('#estudiantet').DataTable( {
             language: {
                     "lengthMenu": "Mostrar MENU registros",
                     "zeroRecords": "No se encontraron resultados",
@@ -122,5 +134,4 @@
         } );
 
     </script>
-
 @stop

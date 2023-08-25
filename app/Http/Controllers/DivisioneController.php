@@ -24,9 +24,9 @@ class DivisioneController extends Controller
     {
         //
             // Obtiene todas las divisiones de la base de datos
-        $divisiones = Divisione::all();
+        $division = Divisione::all();
         // Retorna la vista 'divisiones.index' y pasa las divisiones como datos
-        return view('divisiones.index', compact('divisiones'));
+        return view('division.index', compact('division'));
     }
 
     /**
@@ -36,7 +36,7 @@ class DivisioneController extends Controller
     {
         //
           // Retorna la vista 'divisiones.create' para mostrar el formulario de creación
-        return view('divisiones.create');
+        return view('division.create');
     }
 
     /**
@@ -70,7 +70,7 @@ class DivisioneController extends Controller
     {
         //
             // Retorna la vista 'divisiones.edit' y pasa la división a editar como dato
-        return view('divisiones.edit', compact('divisione'));
+        return view('division.edit', compact('divisione'));
     }
 
     /**

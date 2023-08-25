@@ -38,7 +38,7 @@ class UsuarioController extends Controller
          // Recupera todos los usuarios de la base de datos
         $usuarios = User::all();
         // Devuelve la vista 'usuarios.index' y pasa la lista de usuarios como datos
-        return view('usuarios.index', compact('usuarios'));
+        return view('usuario.index', compact('usuarios'));
 
     }
 
@@ -51,7 +51,7 @@ class UsuarioController extends Controller
          // Obtiene todos los nombres de roles desde la base de datos
         $roles = Role::pluck('name', 'name')->all();
         // Devuelve la vista 'usuarios.crear' y pasa la lista de roles como datos
-        return view('usuarios.crear', compact('roles'));
+        return view('usuario.create', compact('roles'));
     }
 
     /**
@@ -101,7 +101,7 @@ class UsuarioController extends Controller
             // Obtiene los nombres de roles del usuario actual
             $userRole = $user->roles->pluck('name', 'name')->all();
             // Devuelve la vista 'usuarios.editar' y pasa los datos del usuario y roles
-            return view('usuarios.editar', compact('user', 'roles', 'userRole'));
+            return view('usuario.edit', compact('user', 'roles', 'userRole'));
 
 
     }

@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         //
           Gate::before(function($user,$ability){
-            return $user->email == 'giselrive64@gmaill.com' ?? null;
+            return $user->email == 'utp0155373@alumno.utpuebla.edu.mx' ?? null;
           });
     }
 }

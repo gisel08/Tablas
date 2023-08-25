@@ -26,9 +26,9 @@ class CarreraController extends Controller
     public function index()
     {
         // Obtiene todas las carreras de la base de datos
-        $carreras = Carrera::all();
+        $carrera = Carrera::all();
         // Retorna la vista 'carreras.index' y pasa las carreras como datos
-        return view('carreras.index', compact('carreras'));
+        return view('carrera.index', compact('carrera'));
     }
 
     /**
@@ -39,7 +39,7 @@ class CarreraController extends Controller
         // Obtiene todas las divisiones para usarlas en el formulario de creación
         $division = Divisione::pluck('nombre', 'id')->all();
         // Retorna la vista 'carreras.create' y pasa las divisiones como datos
-        return view('carreras.create', compact('division'));
+        return view('carrera.create', compact('division'));
     }
 
     /**
@@ -74,7 +74,7 @@ class CarreraController extends Controller
         // Obtiene todas las divisiones para usarlas en el formulario de edición
         $division = Divisione::pluck('nombre', 'id')->all();
         // Retorna la vista 'carreras.edit' y pasa la carrera a editar y las divisiones como datos
-        return view('carreras.edit', compact('carrera', 'division'));
+        return view('carrera.edit', compact('carrera', 'division'));
     }
 
     /**

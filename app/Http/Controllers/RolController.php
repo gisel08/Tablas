@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolController extends Controller
 {
@@ -19,7 +20,7 @@ class RolController extends Controller
     public function index()
    {
         $roles = Role::all();
-        return view('roles.index',compact('roles'));
+        return view('rol.index',compact('roles'));
    }
 
    public function __construct()
@@ -38,7 +39,7 @@ class RolController extends Controller
         //
         // esta accion create se utiliza para mostrar un fromulario que perimta al usuario crear un nuevo rol
         $permission = Permission::get();
-        return view('roles.crear',compact('permission'));
+        return view('rol.create',compact('permission'));
     }
 
     /**
@@ -76,7 +77,7 @@ class RolController extends Controller
         ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
         ->all();
 
-        return view('roles.editar', compact('role','permission','rolePermissions'));
+        return view('rol.edit', compact('role','permission','rolePermissions'));
         }
 
     /**

@@ -28,9 +28,9 @@ class EstudianteController extends Controller
     public function index()
     {
         // Obtiene todos los estudiantes de la base de datos
-        $estudiantes = Estudiante::all();
+        $estudiante = Estudiante::all();
         // Retorna la vista 'estudiante.index' y pasa los estudiantes como datos
-        return view('estudiante.index', compact('estudiantes'));
+        return view('estudiante.index', compact('estudiante'));
     }
 
     /**
@@ -63,7 +63,7 @@ class EstudianteController extends Controller
         // Crear un nuevo registro de 'Estudiante' con los datos proporcionados en la solicitud.
         Estudiante::create($request->all());
         // Redirigir al usuario a la vista de índice de profesores después de crear con éxito.
-        return redirect()->route('profesores.index');
+        return redirect()->route('estudiantes.index');
     }
 
     /**

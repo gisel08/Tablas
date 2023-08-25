@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Sicea</b>EJEMPLO',
+    'logo_img' => 'public/img/favicon.ico',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -150,8 +150,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -187,12 +187,12 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => '',
+    'classes_brand' => 'bg-success',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-secondary elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -294,96 +294,130 @@ return [
         [
             'type'         => 'navbar-search',
             'text'         => 'search',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
 
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Buscar',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Inicio',
+            'url'  => 'dashboard',
+            'icon' => 'fas fa-fw fa-home',
         ],
+        ['header' => 'Configuracion de Usuario'],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Perfil',
+            'url'  => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
+        ['header' => 'Operaciones CRUD'],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Roles y Permisos',
+            'icon'    => 'fas fa-fw fa-key',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'VER',
+                    'icon'    => 'fas fa-fw fa-eye',
+                    'url'  => 'roles',
+                    'can' => 'ver-rol'
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'CREAR',
+                    'icon'    => 'fas fa-fw fa-pen',
+                    'url'  => 'roles/create',
+                    'can' => 'crear-rol'
                 ],
             ],
         ],
-        ['header' => 'labels'],
         [
-            'text'       => 'important',
+            'text'    => 'Usuarios',
+            'icon'    => 'fas fa-fw fa-users',
+            'submenu' => [
+                [
+                    'text' => 'VER',
+                    'icon'    => 'fas fa-fw fa-eye',
+                    'url'  => 'usuarios',
+                    'can' => 'ver-usuario'
+                ],
+                [
+                    'text' => 'CREAR',
+                    'icon'    => 'fas fa-fw fa-pen',
+                    'url'  => 'usuarios/create',
+                    'can' => 'crear-usuario'
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Estudiantes',
+            'icon'    => 'fas fa-fw fa-graduation-cap',
+            'submenu' => [
+                [
+                    'text' => 'VER',
+                    'icon'    => 'fas fa-fw fa-eye',
+                    'url'  => 'estudiantes',
+                    'can' => 'ver-estudiante'
+                ],
+                [
+                    'text' => 'CREAR',
+                    'icon'    => 'fas fa-fw fa-pen',
+                    'url'  => 'estudiantes/create',
+                    'can' => 'crear-estudiante'
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Carreras',
+            'icon'    => 'fas fa-fw fa-layer-group',
+            'submenu' => [
+                [
+                    'text' => 'VER',
+                    'icon'    => 'fas fa-fw fa-eye',
+                    'url'  => 'carreras',
+                    'can' => 'ver-carrera'
+                ],
+                [
+                    'text' => 'CREAR',
+                    'icon'    => 'fas fa-fw fa-pen',
+                    'url'  => 'carreras/create',
+                    'can' => 'crear-carrera'
+                ],
+            ],
+            
+        ],
+        [
+            'text'    => 'Divisiones',
+            'icon'    => 'fas fa-fw fa-solid fa-school',
+            'submenu' => [
+                [
+                    'text' => 'VER',
+                    'icon'    => 'fas fa-fw fa-eye',
+                    'url'  => 'divisiones',
+                    'can' => 'ver-division'
+                ],
+                [
+                    'text' => 'CREAR',
+                    'icon'    => 'fas fa-fw fa-pen',
+                    'url'  => 'divisiones/create',
+                    'can' => 'crear-division'
+                ],
+            ],
+        ],
+        
+        ['header' => 'EXTRA'],
+        [
+            'text'       => 'SOLICITUD',
             'icon_color' => 'red',
             'url'        => '#',
         ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
